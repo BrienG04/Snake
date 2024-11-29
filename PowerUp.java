@@ -1,17 +1,22 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.Random;
 
 public class PowerUp {
     private int x, y;
     private Type type;
 
     public enum Type {
-        SPEED_BOOST, SHRINK, MAGNET
+        SPEED_BOOST,
+        SHRINK,
+        DOUBLE_SIZE,
+        PINK  // Add the PINK power-up type
     }
 
     public PowerUp(int x, int y) {
         this.x = x;
         this.y = y;
-        this.type = Type.values()[(int)(Math.random() * Type.values().length)];
+        this.type = Type.values()[new Random().nextInt(Type.values().length)];
     }
 
     public int getX() {
@@ -34,8 +39,11 @@ public class PowerUp {
             case SHRINK:
                 g.setColor(Color.pink);
                 break;
-            case MAGNET:
-                g.setColor(Color.orange);
+            case DOUBLE_SIZE:
+                g.setColor(Color.yellow);  // Yellow for Double Size
+                break;
+            case PINK:
+                g.setColor(Color.cyan);  // Magenta for PINK power-up
                 break;
         }
         g.fillRect(x, y, 20, 20);
